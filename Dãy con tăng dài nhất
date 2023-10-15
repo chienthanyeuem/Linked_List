@@ -1,0 +1,79 @@
+#include<iostream>
+#include<set>
+#include<map>
+#include<unordered_map>
+#include<unordered_set>
+#include<array>
+#include<string>
+#include<fstream>
+#include<sstream>
+#include<cstring>
+#include<algorithm>
+#include<climits>
+#include<cmath>
+#include<numeric>
+#include<vector>
+#include<stack>
+#include<cstddef>
+#include<utility>
+#include<queue>
+#include<deque>
+#include<iomanip>
+#include<random>
+#include<cstdbool>
+using namespace std;
+
+#define str string
+#define ll long long
+#define ull unsigned long long
+#define fl float
+#define pb push_back
+#define PB pop_back()
+#define pf push_front
+#define PF pop_front()
+#define era erase
+#define ins insert
+#define FOR(i,r,n) for(int i=r; i<n; ++i)
+#define FORn(i,r,n) for(int i=r ; i<=n; ++i)
+#define FORen(i,r,n) for(int i=n-1; i>=r; --i)
+
+inline ll gcd(ll a, ll b) { if (b == 0) return a; else return gcd(b, a % b); }
+inline ll lcm(ll a, ll b) { return b / gcd(a, b) * a; }
+inline ll max(ll a, ll b) { ll max; return max = a > b ? a : b; }
+inline ll min(ll a, ll b) { ll min; return min = a < b ? a : b; }
+
+const ll mod = 1000000007;
+const ll inf = 1000002804;
+const int dx1[8] = { -1,-1,-1,0,0,1,1,1 };
+const int dy1[8] = { -1,0,1,-1,1,-1,0,1 };
+const int dx2[4] = { -1,0,1,0 };
+const int dy2[4] = { 0,-1,0,1 };
+const int maxn = 1001;
+
+int l[maxn];
+int a[maxn];
+int n;
+
+void solve(){
+	cin >> n;
+	FOR(i, 0, n) {
+		l[i] = 1;
+		cin >> a[i];
+	}
+	FOR(i, 0, n) {
+		for (int j = i; j >= 0; --j) {
+			if (a[i] > a[j]) {
+				l[i] = max(l[i], l[j] + 1);
+			}
+		}
+	}
+	cout << *max_element(l, l + n);
+}
+
+int main() {
+	/*int tc; cin >> tc;
+	while (tc--) {*/
+		solve();
+	/*	cout << endl;
+	}*/
+}
