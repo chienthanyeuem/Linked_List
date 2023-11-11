@@ -1,0 +1,31 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+#define FOR(i,r,n) for(int i = r; i <= n; ++i)
+
+int n, s;
+int dp[40001], a[201], c[201];
+
+void solve() {
+    cin >> n >> s;
+    FOR(i, 1, n) cin >> a[i];
+    memset(dp, 0, sizeof(dp));
+    dp[0] = 1;
+    FOR(i, 1, n) {
+        for (int j = s; j >= a[i]; --j) {
+            if (dp[j - a[i]]) {
+                dp[j] = 1;
+            }
+        }
+    }
+    if (dp[s]) cout << "YES\n";
+    else cout << "NO\n";
+}
+
+int main() {
+    int tc; cin >> tc;
+    while (tc--) {
+        solve();
+    }
+}
