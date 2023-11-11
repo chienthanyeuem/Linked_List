@@ -1,0 +1,46 @@
+#include<iostream>
+#include<set>
+#include<array>
+#include<string>
+#include<cstring>
+#include<sstream>
+#include<algorithm>
+#include<vector>
+#include<map>
+#include<queue>
+
+using namespace std;
+
+#define pb push_back
+#define FOR(i,r,n) for(int i=r; i<n; ++i)
+#define ll long long
+
+const int maxn = 100001;
+const ll mod = 1000000007;
+
+int s[1001][1001];
+
+void solve() {
+	string s1, s2;
+	cin >> s1 >> s2;
+	memset(s, 0, sizeof(s));
+	int res = 0;
+	FOR(i, 1, s1.size() + 1) {
+		FOR(j, 1, s2.size() + 1) {
+			if (s1[i - 1] == s2[j - 1]) {
+				s[i][j] = s[i - 1][j - 1] + 1;
+			}
+			else s[i][j] = max(s[i - 1][j], s[i][j - 1]);
+			res = max(res, s[i][j]);
+		}
+	}
+	cout << res;
+}
+
+int main() {
+	int tc; cin >> tc;
+	while (tc--) {
+		solve();
+		cout << endl;
+	}
+}
